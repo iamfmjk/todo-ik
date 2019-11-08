@@ -1,16 +1,19 @@
 $(function() {
   // The taskHtml method takes in a JavaScript representation using <li> tags
   function taskHtml(task) {
-    var checkedStatus = task.done ? "checked" : "";
-    var liElement = '<li><div class="view"><input class="toggle" type="checkbox"' +
+  var checkedStatus = task.done ? "checked" : "";
+  var liClass = task.done ? "completed" : "";
+  var liElement = '<li id="listItem-' + task.id +'" class="' + liClass + '">' +
+  '<div class="view"><input class="toggle" type="checkbox"' +
     " data-id='" + task.id + "'" +
     checkedStatus +
     '><label>' +
      task.title +
      '</label></div></li>';
 
-     return liElement;
-  }
+  return liElement;
+}
+
 
   // toggleTask takes in an HTML representation of an event that fires from an HTML representation of the toggle checkbox and performs an API resuest to toggle the value of the 'done' field.
   function toggleTask(e) {
@@ -23,10 +26,15 @@ $(function() {
       task: {
         done: doneValue
       }
+    }).success(function(data) {
+      var liHtml = taskHtml(data);
+      var $li = $('#listItem-' + data.id);
+      $li.replaceWith(liHtml);
+      $('.toggle').change(toggleTask);
     });
   }
 
-  $.get("/tasks").success( function( data ) {
+  $.get("/tasks").success( function(data) {
     var htmlString = "";
 
     $.each(data, function(index,  task) {
