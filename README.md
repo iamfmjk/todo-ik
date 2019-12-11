@@ -1,24 +1,5 @@
-# README
+# Todo single page web application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Todo-ik is a single page web app built as a part of Berkeley Coding Bootcamp program. Simply enough, app allows users to add items to the list and mark/un-mark them as done.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Built with:** Ruby on Rails, JavaScript, jQuery, JSON API and styled with todo-mvc (http://todomvc.com)
